@@ -2,7 +2,7 @@
 
 class Luncher():
     def __init__(self):
-        self.menu_ate = ['닭갈비전']
+        self.menu_ate = ['닭갈비전', '우렁식탁']
         self.menu_bucket = ['후꾸짱', '참맛집', '산수정', '남쪽나라', '황성',
                        '대풍', '동경주방', '닭갈비전', '우렁식탁', '홍콩반점']
 
