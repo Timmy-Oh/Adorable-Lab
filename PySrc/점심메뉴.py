@@ -17,3 +17,10 @@ class Luncher():
         n = input('랜덤점심 메뉴판 : 숫자 1~999 중 하나를 넣어주세요\n')
         num_menu = ((int(n)*13*19)+2)%len(self.menu_bucket)
         print('오늘의 점심은 {}입니다!'.format(self.menu_bucket[num_menu]))
+
+
+a = Luncher()
+a.run()
+
+
+

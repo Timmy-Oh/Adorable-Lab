@@ -4,3 +4,4 @@ def Sum(a,b): print(a+b)
 def Sub(a,b): print(a-b)
 def Mul(a,b): print(a*b)
 def Div(a,b): print(a/b)
+
