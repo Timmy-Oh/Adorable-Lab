@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/yt_note/PySrc/6day/hr.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1479"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="dept"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-- SQL03.py
+
+-- 급여가 1500 이상이고, 2990 보다 작은 직원들의 이름, 사번, 급여는?
+SELECT ename, empno, sal
+FROM emp
+WHERE sal &gt;=1500 and sal &lt; 2990;
+-- WHERE sal in BETWEEN (1500, 2990);
+
+
+-- 업무가 CLERK이고, 급여가 1000 미만인 직원들의 이름, 사번, 업무, 급여는?
+SELECT ename, empno, job, sal
+FROM emp
+WHERE (job is 'CLERK') and ( sal &lt; 1000);
+
+-- 부서번호가 10 이 아닌 직원들의 이름, 사번, 부서번호는?
+SELECT ename, empno, deptno
+from emp
+where deptno is not 10;
+
+-- A 로 시작하는 이름을 가진 직원들의 이름, 사번은?
+SELECT ename, empno
+FROM emp
+WHERE ename like 'A%';
+
+-- 이름 두번째 위치에 A가 들어가는 직원들의 이름, 사번은?
+SELECT ename, empno
+FROM emp
+WHERE ename like '_A%';
+
+-- 이름 뒤에서 두번째 위치에 E가 들어가는 직원들의 이름, 사번은?
+SELECT ename, empno
+FROM emp
+WHERE ename like '%A_';
+
+-- 급여가 1100 이거나 1600 이거나 3000인 직원들의 이름, 급여는?
+SELECT ename, sal
+FROM emp
+-- WHERE (sal is 1100) or (sal is 1600) or (sal is 3000)
+WHERE sal in (1100, 1600, 3000);</sql><current_tab id="0"/></tab_sql></sqlb_project>

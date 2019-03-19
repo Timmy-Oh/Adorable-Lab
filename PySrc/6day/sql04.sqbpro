@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/yt_note/PySrc/6day/hr.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1479"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="dept"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-- SQL04.sql
+
+-- 직원들의 수는?
+SELECT count(empno)
+FROM emp;
+
+SELECT count(empno)
+FROM emp
+group by job;
+
+-- 업무(job)의 개수는?
+SELECT count(DISTINCT job)
+from emp;
+
+-- 커미션 받는 직원들의 수?
+SELECT count(DISTINCT empno)
+from emp
+where comm&gt;0;
+
+-- 직원들의 평균급여, 최소급여, 최대급여, 급여합산은?
+SELECT round(avg(sal)), min(sal), max(sal), sum(sal)
+from emp;
+
+SELECT job, count(empno), round(avg(sal)), min(sal), max(sal), sum(sal)
+from emp
+GROUP by job;
+
+-- 부서번호별 인원수와 최대급여는?
+SELECT empno, count(empno), max(sal)
+from emp
+GROUP by deptno
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

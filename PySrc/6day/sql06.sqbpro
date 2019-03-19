@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/yt_note/PySrc/6day/hr.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1479"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="dept"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-- SQL06.sql
+
+-- SMITH의 이름, 급여, 급여등급은?
+SELECT ename, sal, grade
+FROM emp e, salgrade s
+WHERE (e.sal BETWEEN s.losal and s.hisal) and e.ename = 'SMITH';
+
+-- 3등급의 급여등급을 가지고 있는 직원들의 이름, 급여, 급여등급은?
+SELECT e.ename, e.sal, s.grade
+FROM emp e, salgrade s
+WHERE (e.sal BETWEEN s.losal and s.hisal) and (s.grade == 3);
+
+-- 급여가 1401 ~ 2000 인 직원들의 이름, 급여, 급여등급, 부서명은?
+SELECT e.ename, e.sal, s.grade, d.dname
+FROM emp e, salgrade s, dept d
+WHERE (e.sal BETWEEN s.losal and s.hisal) and (e.sal BETWEEN 1401 and 2000);
+
+-- 시카고에서 근무하는 직원들의 이름, 부서명, 위치, 급여, 급여등급은?
+SELECT e.ename as '이름', d.dname as '부서명', d.loc as '위치', e.sal as '급여', s.grade as '급여등급'
+FROM emp e, salgrade s, dept d
+WHERE (e.sal BETWEEN s.losal and s.hisal) and (d.loc == 'CHICAGO');
+
+-- SMITH의 이름, 사번, 상관의 이름, 사번은?
+SELECT e.ename, e.empno, e2.ename, e2.empno
+from emp e, emp e2
+where (e.mgr == e2.empno) and (e.ename = 'SMITH');
+
+
+
+
+-- SMITH의 이름, 사번, 부서명, 상관의 이름, 사번, 부서명은?
+SELECT e1.ename, e1.empno, d1.dname, e2.ename, e2.empno, d2.dname
+from emp e1, dept d1, emp e2, dept d2
+where (e1.deptno == d1.deptno) and (e2.deptno == d2.deptno) and (e1.mgr == e2.empno) and (e1.ename = 'SMITH');
+
+
+-- SMITH의 이름, 사번, 급여, 급여등급, 상관의 이름, 사번, 급여, 급여등급은?
+SELECT e1.ename, e1.empno, e1.sal, e2.ename, e2.empno, e2.sal
+from emp e1, emp e2, salgrade s1, salgrade s2
+where ((e1.sal BETWEEN s1.losal and s1.hisal) and (e2.sal BETWEEN s2.losal and s2.hisal)) and ((e1.mgr == e2.empno) and (e1.ename = 'SMITH'));
+
+-- SMITH의 이름, 사번, 급여등급, 부서명, 상관의 이름, 사번, 급여등급, 부서명은?
+SELECT e1.ename, e1.empno, s1.grade, d1.dname, e2.ename, e2.empno, s2.grade, d2.dname
+from emp e1, dept d1, emp e2, dept d2, salgrade s1, salgrade s2
+where (e1.deptno == d1.deptno) and (e2.deptno == d2.deptno) and (e1.mgr == e2.empno) and (e1.ename = 'SMITH') and ((e1.sal BETWEEN s1.losal and s1.hisal) and (e2.sal BETWEEN s2.losal and s2.hisal))</sql><current_tab id="0"/></tab_sql></sqlb_project>
