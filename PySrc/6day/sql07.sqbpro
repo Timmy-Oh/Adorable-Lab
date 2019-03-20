@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/yt_note/PySrc/6day/hr.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1479"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="dept"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-------------------------------------------------
+
+drop table emp2; 
+drop table dept2;
+create table emp2 (ename varchar2(10), 
+                   deptno number(2));
+
+create table dept2 (dname varchar2(10),
+                    deptno number(2)); 
+                    
+insert into emp2 values ('Jane',10);
+insert into emp2 values ('Alice',10);
+insert into emp2 values ('Sophia',20);
+insert into emp2 values ('Tom',null);
+
+select * from emp2;
+
+insert into dept2 values ('HR',10);
+insert into dept2 values ('SALES',20);
+insert into dept2 values ('IT',null);
+
+select * from emp2;
+select * from dept2;
+
+------------------------------------------------
+
+
+SELECT e1.ename, e1.job, d1.dname, e1.sal, grade, e2.ename, d2.dname
+from emp e1, emp e2, dept d1, dept d2, salgrade s
+WHERE (e1.mgr = e2.empno) and (e1.sal BETWEEN s.losal and s.hisal) AND
+	(e1.deptno = d1.deptno) and (e2.deptno = d2.deptno) and (e1.sal &lt; (SELECT avg(sal) 
+																		FROM emp 
+																		where (job = (SELECT job from emp WHERE ename='MARTIN'))));
+																		 
+																		 
+																		 
+-- RESEARCH 부서, DALLAS 위치에 근무하는 직원들의
+-- 이름, 사번, 부서명, 위치는?
+
+SELECT e.ename, e.empno, d.dname, d.loc
+from emp e, dept d
+WHERE (e.deptno = d.deptno) and (d.dname = 'RESEARCH') and (d.loc = 'DALLAS');
+
+-- SCOTT 과 같은 부서, 같은 위치에서 근무하는 직원들의
+-- 이름, 사번, 부서명, 위치는?
+SELECT e.ename, e.empno, d.dname, d.loc
+from emp e, dept d
+WHERE (e.deptno = d.deptno) and (d.dname == (SELECT d2.dname
+										    from emp e2, dept d2
+										    WHERE (e2.deptno = d2.deptno) and (e2.ename = 'SCOTT'))) 
+							and (d.loc == (SELECT d3.loc
+										  from emp e3, dept d3
+										  WHERE (e3.deptno = d3.deptno) and (e3.ename = 'SCOTT')))  ;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
