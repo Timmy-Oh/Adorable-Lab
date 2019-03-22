@@ -5,6 +5,7 @@ import urllib.parse
 import requests
 import re
 
+# 2018-01-01 ~ 2019-03-21
 startNo, endNo = 78000, 570000
 with open('./cw_db.tsv', 'w', encoding='utf-8') as f:
     for docNo in range(startNo, endNo+1):
